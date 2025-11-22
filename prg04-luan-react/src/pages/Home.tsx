@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
+import imagemDoutora from '../assets/img/imagem-doutora.jpg';
 
 const Home: React.FC = () => {
   const servicos = [
@@ -125,7 +126,7 @@ const Home: React.FC = () => {
 
           <div className="col-lg-5 img-doutora text-center mt-4 mt-lg-0">
             <img
-               src="/src/assets/img/imagem-doutora.jpg" 
+               src={imagemDoutora} 
               className="img-fluid rounded shadow" 
               alt="Imagem da doutora" 
               style={{ maxWidth: '500px' }}
@@ -141,7 +142,7 @@ const Home: React.FC = () => {
             <div className="row align-items-center">
               <div className="col-lg-4 mb-4 mb-lg-0">
                 <img 
-                  src="/src/assets/img/imagem-doutora.jpg" 
+                  src={imagemDoutora} 
                   className="img-fluid rounded shadow" 
                   alt="Foto da doutora Lorena Alves"
                 />
