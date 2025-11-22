@@ -1,0 +1,326 @@
+/* ============================================
+   Customizações do Bootstrap para o Projeto
+   ============================================ */
+
+/* Variáveis Personalizadas - Paleta de Cores */
+:root {
+    --primary-color: #C9941A;
+    --secondary-color: #D4A017;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #D4A017;
+    --info-color: #6B5D4F;
+    --light-color: #FFFBF5;
+    --dark-color: #2C2416;
+    --bg-primary: #FFFBF5;
+    --bg-secondary: #F5EFE6;
+    --bg-tertiary: #E8DCC8;
+    --text-primary: #2C2416;
+    --text-secondary: #6B5D4F;
+}
+
+/* Ajustes Gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Sobrescrever cores primárias do Bootstrap */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-light {
+    background-color: var(--bg-secondary) !important;
+}
+
+.navbar.bg-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+}
+
+.table-primary {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Cards Customizados */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    border: 1px solid var(--bg-tertiary);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(201, 148, 26, 0.15) !important;
+}
+
+.card-title {
+    color: var(--text-primary);
+}
+
+.card-text {
+    color: var(--text-secondary);
+}
+
+/* Botões Personalizados */
+.btn {
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Seções da Home */
+.home {
+    min-height: 80vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.home .card {
+    background: white;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--bg-tertiary);
+}
+
+.home .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.home .btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.home .btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.home .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsividade Adicional */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .display-5 {
+        font-size: 1.75rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Navbar Customizada */
+.navbar {
+    padding: 1rem 2rem;
+}
+
+/* Tabelas */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+.table thead th {
+    border-bottom: 2px solid var(--bg-tertiary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(201, 148, 26, 0.05);
+}
+
+/* Modais */
+.modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(44, 36, 22, 0.2);
+}
+
+.modal-header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* Forms */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(201, 148, 26, 0.25);
+}
+
+.form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Ícones */
+.bi {
+    vertical-align: middle;
+}
+
+/* Badges Personalizados */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+}
+
+/* Alertas */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* Botão Flutuante */
+.btn.rounded-circle {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Sombras Customizadas */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(44, 36, 22, 0.075) !important;
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(44, 36, 22, 0.15) !important;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(44, 36, 22, 0.175) !important;
+}
+
+/* Espaçamentos */
+section {
+    scroll-margin-top: 80px;
+}
+
+/* Cores de Texto Personalizadas */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Background Gradients */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #C9941A 0%, #D4A017 100%);
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(135deg, #E8DCC8 0%, #F5EFE6 100%);
+}
+
+/* Classes adicionais da paleta */
+.bg-primary-light {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-secondary-light {
+    background-color: var(--bg-secondary) !important;
+}
+
+.bg-tertiary {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.text-dark-custom {
+    color: var(--text-primary) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+.border-secondary {
+    border-color: var(--bg-tertiary) !important;
+}

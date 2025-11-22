@@ -1,0 +1,241 @@
+/* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    border: 1;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFBF5;
+    color: #2C2416;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.6;
+}
+
+ul {
+  list-style-type: none; /* Remove as bolinhas */
+}
+
+/* Classes utilitárias */
+
+.alinhar-ao-centro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.atividades {
+    text-align: center;
+    padding: 15px;
+    margin: 10px;
+}
+
+.recipiente {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Navegação Voltar */
+
+.navegacao-voltar {
+    margin-bottom: 2rem;
+}
+
+.navegacao-voltar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #C9941A;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(201, 148, 26, 0.3);
+}
+
+.navegacao-voltar a:hover {
+    background-color: #D4A017;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(201, 148, 26, 0.4);
+}
+
+.navegacao-voltar a::before {
+    content: "←";
+    font-size: 1.2rem;
+}
+
+/* Estilos para vídeos */
+
+.video {
+    margin: 20px;
+}
+
+/* Botão flutuante - canto inferior direito */
+.icone-flutuante {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+}
+
+.botao-flutuante {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: #C9941A;
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.botao-flutuante:hover,
+.botao-flutuante:focus {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    background: #D4A017;
+}
+
+.botao-flutuante:focus {
+    outline: 3px solid rgba(217, 170, 54, 0.25);
+    outline-offset: 4px;
+}
+
+/* Pequeno ajuste em telas muito pequenas */
+@media (max-width: 420px) {
+    .botao-flutuante {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos da pagina principal */
+
+.home {
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    height: 52rem;
+}
+
+.titulo-home h2{
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+}
+
+.titulo-home strong{
+    color: #D4A017;
+}
+
+.home p, button {
+    font-size: 1.4rem;
+}
+
+.conteudo-texto {
+    width: 50rem;
+}
+
+.conteudo-texto h2, .conteudo-texto p {
+    padding-bottom: 1rem;
+}
+
+.cards-home {
+    display: flex;
+    padding-top: 1.7rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F5EFE6;
+    height: 8rem;
+    width: 11rem;
+    border-radius: 10%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.interno {
+    justify-content: space-evenly;
+}
+
+
+.botoes-home button{
+    background-color: #E8DCC8;
+    padding: 10px 25px;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1.09rem;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.botoes-home button:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    background: #D4A017;
+    color: white;
+}
+
+.botoes-home :first-child{
+    background-color: #C9941A;
+    color: white;
+    margin-right: 10px;
+}
+
+.img-doutora img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+.sobre {
+    background-color: white;
+    display: flex;
+}
+
+.servicos {
+    display: flex;
+}
+
+.depoimentos {
+    background-color: white;
+    display: flex;
+}
