@@ -54,10 +54,6 @@ const AdminPanel: React.FC = () => {
     }
   };
 
-  const salvarUsuarios = (novosUsuarios: User[]) => {
-    localStorage.setItem('usuarios', JSON.stringify(novosUsuarios));
-    setUsuarios(novosUsuarios);
-  };
 
   const abrirModalAdicionar = () => {
     setModoEdicao(false);
