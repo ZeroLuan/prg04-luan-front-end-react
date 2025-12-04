@@ -2,6 +2,20 @@
 
 Aplicação web React moderna para clínica de fisioterapia, construída com Vite, TypeScript, React Router e Bootstrap.
 
+## 🎯 Novidade: Integração com Backend!
+
+✨ **Este projeto agora está totalmente integrado com o backend Spring Boot!**
+
+- ✅ Cadastro de usuários via API
+- ✅ CRUD completo de usuários
+- ✅ Paginação de dados
+- ✅ Axios para requisições HTTP
+
+📚 **Documentação de Integração**: Veja [INTEGRACAO.md](./INTEGRACAO.md) para detalhes completos  
+🧪 **Guia de Testes**: Veja [TESTE.md](./TESTE.md) para testar a integração
+
+---
+
 ## 🚀 Tecnologias Utilizadas
 
 - **React 18** - Biblioteca JavaScript para construção de interfaces
@@ -11,6 +25,7 @@ Aplicação web React moderna para clínica de fisioterapia, construída com Vit
 - **Bootstrap 5** - Framework CSS responsivo
 - **Bootstrap Icons** - Ícones
 - **Context API** - Gerenciamento de estado global
+- **Axios** - Cliente HTTP para integração com API
 
 ## 📁 Estrutura do Projeto
 
@@ -26,10 +41,14 @@ src/
 │   └── layout/         # Componentes de layout (Header, Footer)
 ├── contexts/           # Context API (AuthContext)
 ├── pages/              # Páginas da aplicação
-│   ├── Home.tsx
+│   ├── Home.tsx        # ✨ Integrado com API de cadastro
 │   ├── Login.tsx
-│   └── AdminPanel.tsx
-├── services/           # Serviços e APIs
+│   └── AdminPanel.tsx  # ✨ Integrado com API de usuários (CRUD)
+├── services/           # ✨ Serviços de integração com API
+│   ├── api.ts          # Configuração do Axios
+│   ├── config.ts       # Configurações da API
+│   ├── cadastroService.ts  # Serviço de cadastro
+│   └── usuarioService.ts   # Serviço CRUD de usuários
 ├── types/              # Definições TypeScript
 └── utils/              # Utilitários
 ```
@@ -40,6 +59,7 @@ src/
 
 - Node.js (v18 ou superior)
 - npm ou yarn
+- **Backend Spring Boot rodando** (para funcionalidades completas)
 
 ### Instalação
 
@@ -59,6 +79,16 @@ npm run dev
 
 Acesse: http://localhost:5173
 
+### ⚙️ Configurar URL do Backend
+
+Edite `src/services/config.ts` se necessário:
+
+```typescript
+export const API_CONFIG = {
+  baseURL: "http://localhost:8080/api", // Altere aqui
+};
+```
+
 ### Build para produção
 
 ```powershell
@@ -74,26 +104,37 @@ npm run preview
 ## 📄 Páginas e Funcionalidades
 
 ### 🏠 Home (`/`)
+
 - Hero section com apresentação
 - Sobre a doutora
 - Serviços oferecidos
 - Depoimentos de pacientes
+- **✨ Formulário de Cadastro** (integrado com `/api/cadastro/cadastrar`)
 - Formulário de contato
 - Navegação para login
 
 ### 🔐 Login (`/login`)
+
 - Formulário de autenticação
 - Validação de campos
 - Redirecionamento após login
 - Armazenamento em sessionStorage
+- **Nota**: Autenticação local (para demonstração)
 
 ### 👨‍💼 Painel Administrativo (`/admin`)
+
 - **Protegido por autenticação**
-- CRUD completo de usuários
+- **✨ CRUD completo integrado com API**:
+  - Criar usuário (`POST /api/usuario/criar`)
+  - Listar usuários (`GET /api/usuario/listar`)
+  - Editar usuário (`PUT /api/usuario/{id}`)
+  - Excluir usuário (`DELETE /api/usuario/{id}`)
+- **✨ Paginação** (10 itens por página)
 - Listagem em tabela responsiva
 - Modais para adicionar/editar
 - Confirmação de exclusão
-- Persistência em localStorage
+- **✨ Loading states** durante requisições
+- **✨ Mensagens de feedback** (sucesso/erro)
 - Logout funcional
 
 ## 🔐 Autenticação
@@ -104,10 +145,12 @@ O projeto utiliza Context API para gerenciar autenticação:
 - `useAuth()` - Hook customizado para acessar autenticação
 - `ProtectedRoute` - Componente para proteger rotas
 
+**Nota**: Atualmente usa autenticação local. Para produção, implemente JWT com o backend.
+
 ## 💾 Armazenamento de Dados
 
-- **sessionStorage** - Dados de autenticação do usuário
-- **localStorage** - Lista de usuários cadastrados no painel admin
+- **sessionStorage** - Dados de autenticação do usuário (local)
+- **Backend API** - Todos os dados de usuários (CRUD)
 
 ## 🎨 Estilização
 
@@ -134,9 +177,9 @@ Este projeto é uma refatoração completa do projeto HTML/CSS/JS estático para
 
 ```json
 {
-  "dev": "vite",              // Inicia servidor de desenvolvimento
+  "dev": "vite", // Inicia servidor de desenvolvimento
   "build": "tsc && vite build", // Build de produção
-  "preview": "vite preview"    // Preview do build
+  "preview": "vite preview" // Preview do build
 }
 ```
 

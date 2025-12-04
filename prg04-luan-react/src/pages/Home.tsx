@@ -1,10 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
+import type { FormEvent } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import { Link } from 'react-router-dom';
 import imagemDoutora from '../assets/img/imagem-doutora.jpg';
+import { cadastroService } from '../services/cadastroService';
+import type { CadastroRequest } from '../types';
 
 const Home: React.FC = () => {
+  const [formData, setFormData] = useState<CadastroRequest>({
+    nome: '',
+    email: '',
+    senha: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [mensagem, setMensagem] = useState<{ tipo: 'success' | 'error', texto: string } | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMensagem(null);
+
+    try {
+      const response = await cadastroService.cadastrar(formData);
+      setMensagem({
+        tipo: 'success',
+        texto: `Cadastro realizado com sucesso! Bem-vindo(a), ${response.nome}!`
+      });
+      // Limpar formulário após sucesso
+      setFormData({
+        nome: '',
+        email: '',
+        senha: ''
+      });
+    } catch (error: any) {
+      console.error('Erro ao cadastrar:', error);
+      const errorMessage = error.response?.data?.message || 'Erro ao realizar cadastro. Tente novamente.';
+      setMensagem({
+        tipo: 'error',
+        texto: errorMessage
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const servicos = [
     {
       id: 1,
@@ -314,42 +362,97 @@ const Home: React.FC = () => {
               <div className="col-lg-8 mx-auto">
                 <div className="card border-0 shadow">
                   <div className="card-body p-4">
-                    <h4 className="card-title text-center mb-4">Envie uma Mensagem</h4>
-                    <form>
+                    <h4 className="card-title text-center mb-4">
+                      <i className="bi bi-person-plus-fill text-primary me-2"></i>
+                      Cadastre-se em nossa Clínica
+                    </h4>
+                    
+                    {mensagem && (
+                      <div className={`alert alert-${mensagem.tipo === 'success' ? 'success' : 'danger'} alert-dismissible fade show`} role="alert">
+                        <i className={`bi bi-${mensagem.tipo === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2`}></i>
+                        {mensagem.texto}
+                        <button 
+                          type="button" 
+                          className="btn-close" 
+                          onClick={() => setMensagem(null)}
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                    )}
+
+                    <form onSubmit={handleSubmit}>
                       <div className="mb-3">
-                        <label htmlFor="nome" className="form-label">Seu Nome</label>
+                        <label htmlFor="nome" className="form-label">
+                          <i className="bi bi-person"></i> Seu Nome *
+                        </label>
                         <input 
                           type="text" 
                           className="form-control" 
                           id="nome" 
-                          placeholder="Digite seu nome" 
+                          name="nome"
+                          value={formData.nome}
+                          onChange={handleInputChange}
+                          placeholder="Digite seu nome completo" 
                           required 
+                          disabled={loading}
                         />
                       </div>
                       <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Seu Email</label>
+                        <label htmlFor="email" className="form-label">
+                          <i className="bi bi-envelope"></i> Seu Email *
+                        </label>
                         <input 
                           type="email" 
                           className="form-control" 
                           id="email" 
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
                           placeholder="Digite seu email" 
                           required 
+                          disabled={loading}
                         />
                       </div>
                       <div className="mb-3">
-                        <label htmlFor="mensagem" className="form-label">Sua Mensagem</label>
-                        <textarea 
+                        <label htmlFor="senha" className="form-label">
+                          <i className="bi bi-lock"></i> Sua Senha *
+                        </label>
+                        <input 
+                          type="password" 
                           className="form-control" 
-                          id="mensagem" 
-                          rows={5} 
-                          placeholder="Digite sua mensagem" 
-                          required
-                        ></textarea>
+                          id="senha" 
+                          name="senha"
+                          value={formData.senha}
+                          onChange={handleInputChange}
+                          placeholder="Digite sua senha" 
+                          required 
+                          disabled={loading}
+                          minLength={6}
+                        />
+                        <div className="form-text">A senha deve ter no mínimo 6 caracteres</div>
                       </div>
-                      <div className="d-grid">
-                        <button type="submit" className="btn btn-primary btn-lg">
-                          Enviar Mensagem
+                      <div className="d-grid gap-2">
+                        <button 
+                          type="submit" 
+                          className="btn btn-primary btn-lg"
+                          disabled={loading}
+                        >
+                          {loading ? (
+                            <>
+                              <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                              Cadastrando...
+                            </>
+                          ) : (
+                            <>
+                              <i className="bi bi-check-circle me-2"></i>
+                              Realizar Cadastro
+                            </>
+                          )}
                         </button>
+                        <Link to="/login" className="btn btn-outline-secondary">
+                          <i className="bi bi-box-arrow-in-right me-2"></i>
+                          Já tenho cadastro - Fazer Login
+                        </Link>
                       </div>
                     </form>
                   </div>
